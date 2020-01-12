@@ -16,8 +16,6 @@ maxlen = 200  # max number of words in a comment to use
 number_filters = 32  # the number of CNN filters
 train = pd.read_csv(TRAIN_DATA_FILE)
 test = pd.read_csv(TEST_DATA_FILE)
-train = pd.read_csv(TRAIN_DATA_FILE)
-test = pd.read_csv(TEST_DATA_FILE)
 print 'train data', train.shape
 print 'test data', test.shape
 
