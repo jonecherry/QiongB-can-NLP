@@ -98,7 +98,7 @@ def get_model():
     x = Embedding(max_features, embed_size, weights = [embedding_matrix],
                     trainable = False)(inp)
     x = SpatialDropout1D(0.2)(x)
-    x = Bidirectional(LSTM(128, return_sequences = True))(x)
+    x = Bidirectional(GRU(128, return_sequences = True))(x)
     x = Conv1D(64, kernel_size = 2, padding = "valid",
                 kernel_initializer = "he_uniform")(x)
     avg_pool = GlobalAveragePooling1D()(x)
@@ -106,7 +106,7 @@ def get_model():
     x = concatenate([avg_pool, max_pool])
     x = Dense(len(list_classes), activation = "sigmoid")(x)
     model = Model(inputs = inp, outputs = x)
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
 model = get_model()
